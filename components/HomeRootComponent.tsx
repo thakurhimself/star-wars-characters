@@ -49,8 +49,6 @@ export default function HomeRootComponent(
             }
         })
     }
-    console.log("filter", filter)
-    console.log("filteredCharacters", filteredCharacters)
 
     // character details show handler
     const characterDetailsHandler = async(url: string) => {
