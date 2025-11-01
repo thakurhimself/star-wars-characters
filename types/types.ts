@@ -17,3 +17,8 @@ export interface CharacterType {
     edited: Date,
     url: string
 }
+
+export interface UIStateType {
+    type: 'loading' | 'error' | null
+    message?: string
+}
