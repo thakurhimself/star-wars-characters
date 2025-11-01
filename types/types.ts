@@ -22,3 +22,8 @@ export interface UIStateType {
     type: 'loading' | 'error' | null
     message?: string
 }
+
+export interface HomeworldType {
+    name: string,
+    url: string
+}

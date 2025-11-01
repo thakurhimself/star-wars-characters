@@ -5,7 +5,6 @@ import Link from "next/link";
 export default async function Home(
   { searchParams }: { searchParams?: { [key: string]: string | string[] | undefined };}
 ) {
-
   const speciesColorPool = [
     "#2B2D42",
     "#CFB53B",
@@ -27,8 +26,10 @@ export default async function Home(
   let characters;
   const totalCharCount = 82;
   const charPerCall = 10;
-
+  let filmFilterList
+  let homeworldFilterList;
   try {
+    // fetch paginated characters
     const response = await fetch(`https://swapi.dev/api/people/?page=${pageNum}`);
     if (!response.ok) {
       throw Error("Something went wrong");
@@ -36,33 +37,74 @@ export default async function Home(
 
     characters = await response.json();
 
+    // distinct background colors for characters based on species
     characters.results.forEach((char: CharacterType) => {
       if (char.species.length > 0 && !cardBackgroundColors.hasOwnProperty(char.species[0])) {
         cardBackgroundColors[char.species[0]] = speciesColorPool.shift() || '#666666';
       }
     })
-
     cardBackgroundColors['unknown'] = '#ff7f50'
+
+    // films
+    const filmsResponse = await fetch('https://swapi.dev/api/films')
+    if (!filmsResponse.ok) {
+      throw Error("Something went wrong");
+    }
+    const films = await filmsResponse.json();
+    filmFilterList = films.results.map((item: Record<string, string>) => {
+      return {title: item.title, url: item.url}
+    })
+
+    // Home worlds
+    const homeworldURLs: string[] = [];
+    characters.results.forEach((item: CharacterType) => {
+      if (homeworldURLs.indexOf(item.homeworld) < 0) {
+        homeworldURLs.push(item.homeworld);
+      }
+    })
+    const homeworldPromises = homeworldURLs.map((url) => {
+      return fetch(url).then(async(result) => await result.json()).catch(() => {
+        throw Error("Internal error occurred")
+      });
+    })
+
+    const results = await Promise.allSettled(homeworldPromises)
+
+    homeworldFilterList = results.map((item) => {
+      // console.log("item", item);
+      if (item.status === 'fulfilled') {
+        return{
+                name: item.value.name,
+                url: item.value.url
+              }
+      }
+      return undefined
+    }).filter((item) => item != undefined)
+    console.log("homeWorldList", homeworldFilterList);
 
   } catch (error) {
     throw error
   }
 
   const pagination = Array.from({length: Math.ceil(totalCharCount/charPerCall)}, (_, elem) => elem + 1)
-
+  const commonStyle = 'w-full lg:w-4/5 xl:w-3/4 mx-auto p-3'
   return (
     <div 
-    className="py-2"
+    className={commonStyle}
     >
       <header 
-      className="w-full lg:w-4/5 xl:w-3/4 mx-auto p-3 lg:py-3 lg:px-0"
+      className="p-3 lg:py-3 lg:px-0 flex items-center justify-between"
       >
         <p className="text-2xl lg:text-3xl font-[900] text-black">Star Wars</p>
+        <Link href={'/login'} className="font-semibold">Login</Link>
       </header>
       <main 
-      className="w-full lg:w-4/5 xl:w-3/4 mx-auto p-3 lg:p-0"
       >
-        <HomeRootComponent characters={characters.results} cardBackgroundColors={cardBackgroundColors}/>
+        <HomeRootComponent 
+        characters={characters.results} cardBackgroundColors={cardBackgroundColors}
+        filmFilterList={filmFilterList}
+        homeworldFilterList={homeworldFilterList}
+        />
         
         {/* pagination */}
         <section className="mt-10 flex gap-4">

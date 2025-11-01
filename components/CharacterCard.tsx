@@ -6,6 +6,7 @@ export default function CharacterCard(
     {character, onShowDetails, index, backgroundColor}:
     {character: CharacterType, onShowDetails: (url: string) => void, index: number, backgroundColor: string}
 ) {
+    // console.log("character in CharacterCard", character);
     return (
         <AnimationWrapper index={index+1}>
             <section
