@@ -1,6 +1,10 @@
 # Star Wars Character App
 
 ### How to run project.
+
+Project can be accessed through the following link:
+[https://swc-dun.vercel.app/](https://swc-dun.vercel.app/)
+
 Follow the steps to run the project:
 1. Open the terminal
 2. Clone this repository using the follwing command: `git clone https://github.com/thakurhimself/star-wars-characters.git swc`
@@ -51,7 +55,6 @@ I used debouncing to search instead of having a button to trigger search. It is 
 
 3. Bonus feature: filter - filter based on homeworld and film. 
 Instead of fetching all the homeworld or films of star wars for filtering. I chose the set of homeworld and films to which current lot of characters, which are displayed on the screen, belong to.
-
 
 
 
