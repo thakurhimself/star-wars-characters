@@ -3,10 +3,10 @@
 ### How to run project.
 Follow the steps to run the project:
 1. Open the terminal
-2. Clone this repository using the follwing command: git clone https://github.com/thakurhimself/star-wars-characters.git swc
-2. cd swc
-3. Run the following command for production build: npm run build
-4. npm start
+2. Clone this repository using the follwing command: `git clone https://github.com/thakurhimself/star-wars-characters.git swc`
+3. `cd swc`
+4. Run the following command for production build: `npm run build`
+5. `npm start`
 
 Note - It is recommended that you run the production build which is working perfectly. Developement build is showing unexpected behaviour perhaps because of the recently released version of NextJS version 16.
 
@@ -36,12 +36,18 @@ Bonus Features:
     ![Character details](./public/search-and-filter.png)
 
 8. Mock Authentication:
-    * Simple login/logout feature with mocked jwt token.
-    * Silent token refresh logic.
+    * Simple login/logout feature with mocked jwt token. mock username: mando123    password: password123
+    * Silent token refresh logic. Token refreshes every 20 seconds.
     ![login screen](./public/login-page.png)
     ![dashboard screen](./public/dashboard.png)
 
 ### Trade-offs and design choices
-1. 
+1. There are more than 30 species in the star war universe as of now. So fetching all species, which are paginated, per paginated page, and assigning each species with distinct color for character card would have caused performance issue. Since there are only 10 characters per paginated api call, I chose 10 colors - assuming the worst case scenario of getting all 10 characters of distinct species - and a default color for unknown species to represent Character card with different background colors based on species.
+
+2. Bonus feature: Search - While implementing it, it was not clear whether to search character name from the current lot of characters or make a network call to fetch searched name. Documents were not clear on that. 
+So I went with first option of searching character name among the currently displayed characters on the screen. 
+I used debouncing to search instead of having a button to trigger search. It is better user interface.
+
+
 
 
