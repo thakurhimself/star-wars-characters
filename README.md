@@ -27,8 +27,11 @@ Following features have been implemented:
 4. Responsive for mobile, tablet, and desktop screens.
 
 Bonus Features:
+
 5. Allow search by character name.
+
 6. Filter by homeword and film.
+
 7. combination of character name search and homeworld and film filters.
     ![Character details](./public/search-and-filter.png)
 
