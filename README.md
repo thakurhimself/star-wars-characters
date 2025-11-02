@@ -43,7 +43,6 @@ Bonus Features:
 
 ### Trade-offs and design choices
 1. There are more than 30 species in the star war universe as of now. So fetching all species, which are fetched through paginated api calls  and assigning each species with distinct color for character card per page - since I am using NextJS and by default pages are server side rendered and pagination would reconstruct the page from scratch - would have caused performance issue. 
-
 Since there are only 10 characters per paginated api call, I chose 10 colors - assuming the worst case scenario of getting all 10 characters of distinct species - and a default color for unknown species to represent Character card with different background colors based on species.
 
 2. Bonus feature: Search - While implementing it, it was not clear whether to search character name from the current lot of characters or make a network call to fetch searched name. Documents were not clear on that. 
