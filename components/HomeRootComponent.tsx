@@ -31,10 +31,10 @@ export default function HomeRootComponent(
     // Search and filter states
     const [filter, setFilter] = useState<{
         name: string, homeworld: string, 
-        film: string, species: string
+        film: string
     }>(
         {
-            name: '', homeworld: '', film: '', species: ''
+            name: '', homeworld: '', film: ''
         }
     )
     const [filteredCharacters, setFilteredCharacters] = useState<CharacterType[]>([])
@@ -69,7 +69,7 @@ export default function HomeRootComponent(
     // debouncing search and filter
     useEffect(() => {
         const timer = setTimeout(() => {
-            const hasActiveFilters = filter.name.length > 0 || filter.homeworld.length > 0 || filter.film.length > 0 || filter.species.length > 0
+            const hasActiveFilters = filter.name.length > 0 || filter.homeworld.length > 0 || filter.film.length > 0;
             if(hasActiveFilters) {
                 const filteredChar = characters.filter((item) => {
                     const matchesName = filter.name.length > 0 

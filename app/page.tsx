@@ -1,10 +1,19 @@
 import HomeRootComponent from "@/components/HomeRootComponent";
 import { CharacterType } from "@/types/types";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Home(
   { searchParams }: { searchParams?: { [key: string]: string | string[] | undefined };}
 ) {
+
+  // check token
+  const token = (await cookies()).get('token');
+  if (token) {
+    redirect('/dashboard')
+  }
+
   const speciesColorPool = [
     "#2B2D42",
     "#CFB53B",
@@ -71,7 +80,6 @@ export default async function Home(
     const results = await Promise.allSettled(homeworldPromises)
 
     homeworldFilterList = results.map((item) => {
-      // console.log("item", item);
       if (item.status === 'fulfilled') {
         return{
                 name: item.value.name,
@@ -95,7 +103,7 @@ export default async function Home(
       className="p-3 lg:py-3 lg:px-0 flex items-center justify-between"
       >
         <p className="text-2xl lg:text-3xl font-[900] text-black">Star Wars</p>
-        <Link href={'/login'} className="font-semibold">Login</Link>
+        <Link href={'/login'} className="font-semibold hover:text-gray-500">Login</Link>
       </header>
       <main 
       >

@@ -9,7 +9,7 @@ export default function SearchAndFilterCharacters(
         onFilterChange
     }:
     { 
-        filter: {name: string, homeworld: string, film: string, species: string}, 
+        filter: {name: string, homeworld: string, film: string}, 
         filmFilterList: Array<Record<string, string>>,
         homeworldFilterList: HomeworldType[],
         onFilterChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -63,15 +63,6 @@ export default function SearchAndFilterCharacters(
                 }
             </select>
 
-            <select 
-            name="species"
-            value={filter.species}
-            className="w-full border rounded-lg p-3"
-            onChange={onFilterChange}
-            >
-                <option value={''}>Select Species</option>
-                <option>Droid</option>
-            </select>
         </section>
     )
 }
