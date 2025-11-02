@@ -27,3 +27,8 @@ export interface HomeworldType {
     name: string,
     url: string
 }
+
+export interface LoginStateType {
+    success: boolean,
+    message?: string
+}

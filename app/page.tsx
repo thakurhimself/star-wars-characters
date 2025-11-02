@@ -80,7 +80,6 @@ export default async function Home(
       }
       return undefined
     }).filter((item) => item != undefined)
-    console.log("homeWorldList", homeworldFilterList);
 
   } catch (error) {
     throw error
