@@ -31,7 +31,8 @@ export default function LoginForm() {
             <h1 className="text-2xl text-center font-bold text-white dark:text-white mb-5">Star Wars</h1>   
             <label className="flex flex-col gap-2 mb-5">
                 <span className="text-white dark:text-white font-bold">Username</span>
-                <input type="text" 
+                <input 
+                type="text" 
                 name="username" 
                 value={creds.username} 
                 onChange={changeHandler}
@@ -41,7 +42,8 @@ export default function LoginForm() {
             </label>
             <label className="flex flex-col gap-2 mb-5">
                 <span className="text-white dark:text-white font-bold">Password</span>
-                <input type="text" 
+                <input 
+                type="password" 
                 name="password" 
                 value={creds.password} 
                 onChange={changeHandler}

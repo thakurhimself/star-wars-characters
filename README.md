@@ -42,11 +42,16 @@ Bonus Features:
     ![dashboard screen](./public/dashboard.png)
 
 ### Trade-offs and design choices
-1. There are more than 30 species in the star war universe as of now. So fetching all species, which are paginated, per paginated page, and assigning each species with distinct color for character card would have caused performance issue. Since there are only 10 characters per paginated api call, I chose 10 colors - assuming the worst case scenario of getting all 10 characters of distinct species - and a default color for unknown species to represent Character card with different background colors based on species.
+1. There are more than 30 species in the star war universe as of now. So fetching all species, which are fetched through paginated api calls  and assigning each species with distinct color for character card per page - since I am using NextJS and by default pages are server side rendered and pagination would reconstruct the page from scratch - would have caused performance issue. 
+
+Since there are only 10 characters per paginated api call, I chose 10 colors - assuming the worst case scenario of getting all 10 characters of distinct species - and a default color for unknown species to represent Character card with different background colors based on species.
 
 2. Bonus feature: Search - While implementing it, it was not clear whether to search character name from the current lot of characters or make a network call to fetch searched name. Documents were not clear on that. 
 So I went with first option of searching character name among the currently displayed characters on the screen. 
-I used debouncing to search instead of having a button to trigger search. It is better user interface.
+I used debouncing to search instead of having a button to trigger search. It is better user experience.
+
+3. Bonus feature: filter - filter based on homeworld and film. 
+Instead of fetching all the homeworld or films of star wars for filtering. I chose the set of homeworld and films to which current lot of characters, which are displayed on the screen, belong to.
 
 
 
