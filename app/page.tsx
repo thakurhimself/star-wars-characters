@@ -102,7 +102,7 @@ export default async function Home(
       <header 
       className="p-3 lg:py-3 lg:px-0 flex items-center justify-between"
       >
-        <p className="text-2xl lg:text-3xl font-[900] text-black">Star Wars</p>
+        <p className="text-2xl lg:text-3xl font-[900] text-black dark:text-white">Star Wars</p>
         <Link href={'/login'} className="font-semibold hover:text-gray-500">Login</Link>
       </header>
       <main 
@@ -119,7 +119,7 @@ export default async function Home(
             pagination.map((pageNumber) => {
               return (
                 <Link href={`/${pageNumber === 1 ? '' : '?page='+pageNumber}`} key={pageNumber}
-                className={`border-lg border p-2 ${Number(pageNum) === pageNumber ? 'bg-blue-200' : ''}`}
+                className={`border-lg border p-2 ${Number(pageNum) === pageNumber ? 'bg-blue-200 dark:text-black' : ''}`}
                 >
                   {pageNumber}
                 </Link>

@@ -36,7 +36,7 @@ export default function LoginForm() {
                 value={creds.username} 
                 onChange={changeHandler}
                 placeholder="Enter Username" 
-                className="dark:text-white bg-white p-2"
+                className="bg-white dark:bg-white dark:text-black p-2"
                 />
             </label>
             <label className="flex flex-col gap-2 mb-5">
@@ -46,14 +46,14 @@ export default function LoginForm() {
                 value={creds.password} 
                 onChange={changeHandler}
                 placeholder="Enter Username" 
-                className="dark:text-white bg-white p-2"
+                className="bg-white dark:text-black dark:bg-white p-2"
                 />
             </label>
             {
                 (!state.success && state.message) &&
                 <p className="w-full my-3 p-3 rounded-md bg-red-300 dark:bg-slate-200">{state.message}</p>
             }
-            <button className="block w-fit mx-auto bg-red-200 px-5 py-1 cursor-pointer hover:bg-red-400">
+            <button className="block w-fit mx-auto bg-red-200 dark:text-black px-5 py-1 cursor-pointer hover:bg-red-400">
                 {pending ? 'Signing in...' : 'Sign in' }
             </button>
         </form>
